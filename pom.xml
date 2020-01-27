@@ -9,13 +9,6 @@
 		<maven.compiler.target>1.8</maven.compiler.target>
 		<maven.compiler.source>1.8</maven.compiler.source>
 	</properties>
-	<repositories>
-		<repository>
-			<id>repo.pentaho.org</id>
-			<name>repo.pentaho.org-snapshots</name>
-			<url>repository.pentaho.org/artifactory/repo</url>
-		</repository>
-	</repositories>
 	<dependencies>
 		<!-- https://mvnrepository.com/artifact/org.testng/testng -->
 		<dependency>
