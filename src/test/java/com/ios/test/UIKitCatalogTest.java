@@ -81,7 +81,7 @@ public class UIKitCatalogTest extends IOSAppTestBase{
 		
 		stepperType = "CUSTOM";
 		stepperModule.incrementStepper(stepperType, 5);
-		stepperModule.verifyStepperValue(stepperType, "5");
+		stepperModule.verifyStepperValue(stepperType, "6");
 		stepperModule.decrementStepper(stepperType, 3);
 		stepperModule.verifyStepperValue(stepperType, "2");
 	}

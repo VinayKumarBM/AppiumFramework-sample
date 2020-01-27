@@ -38,6 +38,6 @@ public class WebBrowserTest extends IOSWebTestBase {
 		new HomeModule(driver).navigateToLoginPage();
 		LoginModule loginModule = new LoginModule(driver);
 		loginModule.loginToAccount("test123@yahoo.com", "test321");
-		loginModule.verifyErrorMessage("Authentication failed.");
+		loginModule.verifyErrorMessage("Authentication failed!");
 	}
 }

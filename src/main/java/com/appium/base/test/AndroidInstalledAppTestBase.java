@@ -21,5 +21,5 @@ public class AndroidInstalledAppTestBase extends TestBase{
 	public void quitAndroidInstalledApplication(final ITestResult result) throws IOException {
 		quit(driver, result);
 	}
-
+	
 }

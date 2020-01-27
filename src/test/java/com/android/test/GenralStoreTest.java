@@ -25,7 +25,7 @@ public class GenralStoreTest extends AndroidAppTestBase{
 
 	@Test
 	public void shoppingFormErrorValidation() {
-		new GeneralStoreHomeModule(driver).shoppingFormErrorValidation("Brazil", "Please enter your name");
+		new GeneralStoreHomeModule(driver).shoppingFormErrorValidation("Brazil", "Please enter your user name");
 	}
 
 	@Test

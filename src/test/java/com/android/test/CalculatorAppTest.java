@@ -18,7 +18,7 @@ public class CalculatorAppTest extends AndroidInstalledAppTestBase{
 
 	@DataProvider (name="calculatorData")
 	public Object[][] calculatorInputData() {
-		return new Object[][] {{"12","34","plus","46"},{"25","4","multiply","100"},{"70","69","minus","1"},{"81","3","divide","27"}};	
+		return new Object[][] {{"12","34","plus","46"},{"25","4","multiply","10"},{"70","69","minus","1"},{"81","3","divide","27"}};	
 	}
 
 }
