@@ -28,3 +28,9 @@ hs_err_pid*
 .settings/
 target/
 test-output/
+
+# Images files #
+*.png
+
+# html files #
+*.html
