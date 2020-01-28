@@ -2,7 +2,9 @@ package com.android.app.pages;
 
 import java.util.List;
 
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -41,6 +43,9 @@ public class CartPage extends AndroidBasePage {
 	
 	@AndroidFindBy (id = "btnProceed")
 	private WebElement completePurchaseButton;
+	
+	@FindBy (name = "q")
+	private WebElement googleSearchInputbox;
 	
 	public CartPage(AndroidDriver<AndroidElement> driver) {
 		super(driver);
@@ -94,5 +99,10 @@ public class CartPage extends AndroidBasePage {
 	
 	public void clickCompletePurchaseButton() {
 		completePurchaseButton.click();
+	}
+	
+	public void enterSearchKey(String key) {
+		googleSearchInputbox.sendKeys(key);
+		googleSearchInputbox.sendKeys(Keys.ENTER);
 	}
 }

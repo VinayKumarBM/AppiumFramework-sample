@@ -61,11 +61,12 @@ public abstract class TestBase {
 		LOG.info("IOS App launched sucessfully!!");
 		return driver;
 	}
-	
+
 	protected AndroidDriver<AndroidElement> launchAndroidApplication(String appType) {		
 		DesiredCapabilities capabilities = new DesiredCapabilities();
 		capabilities.setCapability(MobileCapabilityType.DEVICE_NAME, Config.getProperties("android.device"));
-		capabilities.setCapability(MobileCapabilityType.AUTOMATION_NAME,"uiautomator2");		
+		capabilities.setCapability(MobileCapabilityType.AUTOMATION_NAME,"uiautomator2");
+		capabilities.setCapability(MobileCapabilityType.TAKES_SCREENSHOT,true);
 		if(appType.equalsIgnoreCase("NATIVE")) {
 			File app = new File(appDir, Config.getProperties("android.app"));
 			capabilities.setCapability(MobileCapabilityType.APP, app.getAbsolutePath());
@@ -77,7 +78,7 @@ public abstract class TestBase {
 			capabilities.setCapability("appPackage", Config.getProperties("android.app.packageName"));
 			capabilities.setCapability("appActivity",  Config.getProperties("android.app.activityName"));
 		}
-		capabilities.setCapability("chromedriverExecutable", driverDir.getAbsolutePath());
+		//capabilities.setCapability("chromedriverExecutable", driverDir.getAbsolutePath());
 
 		AndroidDriver<AndroidElement> driver = null;
 		try {
@@ -86,11 +87,11 @@ public abstract class TestBase {
 		} catch (MalformedURLException e) {
 			LOG.info("IOS App launch failed: "+e.getMessage());
 		}		
-		LOG.info("Android App launched sucessfully!!");
+		LOG.info("Android App launched successfully!!");
 		return driver;
 	}
 
-    //@BeforeSuite
+	//@BeforeSuite
 	public void startAppiumServer() {
 		if(!isAppiumServerRunning(4723)) {
 			//service = new AppiumServiceBuilder().usingPort(4723).build();
@@ -114,12 +115,17 @@ public abstract class TestBase {
 		}
 		return false;
 	}
-	
+
 	protected void quit(WebDriver driver, final ITestResult result) throws IOException {
-		if(result.getStatus()==ITestResult.FAILURE) {
-			ScreenshotUtil.takeScreenshot(driver, result.getName());
-		}
-		driver.quit();
+		try {
+			if(result.getStatus()==ITestResult.FAILURE) {
+				ScreenshotUtil.takeScreenshot(driver, result.getName());
+			}
+		}catch (Exception e) {
+			LOG.info("Exception occured while taking screenshot: "+e.getMessage());
+		} finally {
+			driver.quit();
+		}		
 		LOG.info("App is Closed");
 	}
 }

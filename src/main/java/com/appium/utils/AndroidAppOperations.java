@@ -82,6 +82,10 @@ public class AndroidAppOperations {
 		return currentContext;
 	}
 	
+	public static void switchToContext(AndroidDriver<AndroidElement> driver, String context) {
+		driver.context(context);
+	}
+	
 	public static void scrollToElement(AndroidDriver<AndroidElement> driver, By by) {
 		Dimension size = driver.manage().window().getSize();
 		int anchor = (int) (size.width / 2);

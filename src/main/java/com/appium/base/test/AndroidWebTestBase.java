@@ -22,6 +22,7 @@ public class AndroidWebTestBase extends TestBase{
 	
 	@AfterMethod
 	public void quitAndroidWebBrowser(final ITestResult result) throws IOException {
+		driver.context("NATIVE_APP");
 		quit(driver, result);
 	}
 

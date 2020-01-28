@@ -116,9 +116,8 @@ public class ExcelReportGenerator
         plot.setSectionPaint(2, (Paint)new Color(255, 255, 0));
         final int width = 500;
         final int height = 500;
-        final float quality = 1.0f;
         final ByteArrayOutputStream chart_out = new ByteArrayOutputStream();
-        ChartUtils.writeChartAsJPEG((OutputStream)chart_out, quality, myPieChart, width, height);
+        ChartUtils.writeChartAsPNG((OutputStream)chart_out, myPieChart, width, height);
         final int my_picture_id = ExcelReportGenerator.workbook.addPicture(chart_out.toByteArray(), 5);
         chart_out.close();
         final XSSFDrawing drawing = ExcelReportGenerator.sheet.createDrawingPatriarch();
@@ -262,9 +261,8 @@ public class ExcelReportGenerator
         plot.setSectionPaint(2, (Paint)new Color(255, 255, 0));
         final int width = 500;
         final int height = 500;
-        final float quality = 5.0f;
         final ByteArrayOutputStream chart_out = new ByteArrayOutputStream();
-        ChartUtils.writeChartAsJPEG((OutputStream)chart_out, quality, myPieChart, width, height);
+        ChartUtils.writeChartAsPNG((OutputStream)chart_out, myPieChart, width, height);
         final int my_picture_id = ExcelReportGenerator.workbook.addPicture(chart_out.toByteArray(), 5);
         chart_out.close();
         final XSSFDrawing drawing = ExcelReportGenerator.sheet.createDrawingPatriarch();

@@ -1,8 +1,11 @@
 package com.android.app.modules;
 
 import static org.testng.Assert.assertEquals;
+import static org.testng.Assert.assertTrue;
 
 import com.android.app.pages.GeneralStoreHomePage;
+import com.appium.utils.AndroidAppOperations;
+import com.appium.utils.WaitUtil;
 
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.android.AndroidElement;
@@ -28,6 +31,13 @@ public class GeneralStoreHomeModule {
 		homePage.selectCountry(country);	  
 		homePage.clickLetsShopButton();
 		assertEquals(homePage.getErrorMessage(), errorMessage, "Valid Error message was not displayed");
+	}
+
+	public void verifyCountrySelectionDropdownIsDisplayed(String currentContext) {
+		AndroidAppOperations.pressBackKey(driver);
+		WaitUtil.pause(2);
+		AndroidAppOperations.switchToContext(driver, currentContext);
+		assertTrue(homePage.isCountryDropdownDisplayed(),"Did not switch back to Native APP");
 	}
 
 }

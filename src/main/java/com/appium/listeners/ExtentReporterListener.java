@@ -26,7 +26,7 @@ public class ExtentReporterListener implements IReporter {
  
     public void generateReport(List<XmlSuite> xmlSuites, List<ISuite> suites, String outputDirectory) {
     	
-       htmlReporter = new ExtentHtmlReporter("html-reports/index.html");
+       htmlReporter = new ExtentHtmlReporter("reports/index.html");
        htmlReporter.config().setAutoCreateRelativePathMedia(true);
        htmlReporter.config().setDocumentTitle("Appium Test Report");
        htmlReporter.config().setReportName("Appium Test Dashboard");

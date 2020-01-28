@@ -17,7 +17,7 @@ public class TestRunner {
 		runner.setTestSuites(suitefiles);
 		runner.run();
 		
-		ExcelReportGenerator.generateReport("Appium_Report.xlsx");
+		ExcelReportGenerator.generateReport(new File("reports").getAbsolutePath(), "Appium_Report.xlsx");
 	}
 
 }

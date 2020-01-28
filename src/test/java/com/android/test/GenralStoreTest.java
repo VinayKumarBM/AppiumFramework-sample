@@ -60,18 +60,14 @@ public class GenralStoreTest extends AndroidAppTestBase{
 		cartModule.completePurchase();
 	}
 	
-	@Test (enabled = false)
+	@Test 
 	public void testSwitchingFromNativeToWebAndBack() {
-		addProductToCart();
-		driver.findElementById("btnProceed").click();
-		String currentContext = AndroidAppOperations.switchContext(driver);
-		System.out.println("Switched from "+currentContext+" to "+driver.getContext());
-		driver.findElement(By.name("q")).sendKeys("hello");
-		driver.findElement(By.name("q")).sendKeys(Keys.ENTER);
-		
-		AndroidAppOperations.pressBackKey(driver);
-		driver.context(currentContext);
-		WaitUtil.pause(2);
-		assertTrue(driver.findElementByClassName("android.widget.Spinner").isDisplayed(),"Did not switch back to Native APP");
+		GeneralStoreHomeModule generalStoreModule = new GeneralStoreHomeModule(driver);
+		generalStoreModule.fillShoppingForm("Angola", "Vinay", "Female");
+		new ProductsModule(driver).addSingleProductToCart("Jordan 6 Rings");
+		CartModule cartModule = new CartModule(driver);
+		cartModule.completePurchase();
+		String currentContext = cartModule.enterTextIntoGoogleSearch("Chelsea FC");
+		generalStoreModule.verifyCountrySelectionDropdownIsDisplayed(currentContext);		
 	}
 }

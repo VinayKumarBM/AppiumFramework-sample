@@ -15,7 +15,8 @@
 	<test name="Android Tests">
 		<classes>
 			<class name="com.android.test.GenralStoreTest" />
-			<class name="com.android.test.CalculatorAppTest" />		 
+			<class name="com.android.test.CalculatorAppTest" />	
+			<class name="com.android.test.WebBrowserTest" />	 
 		</classes>
 	</test> 
 </suite> 

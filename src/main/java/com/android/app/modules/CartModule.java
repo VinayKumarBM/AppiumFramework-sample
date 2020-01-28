@@ -2,7 +2,11 @@ package com.android.app.modules;
 
 import static org.testng.Assert.assertEquals;
 
+import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
+
 import com.android.app.pages.CartPage;
+import com.appium.utils.AndroidAppOperations;
 
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.android.AndroidElement;
@@ -48,5 +52,11 @@ public class CartModule {
 
 	public void completePurchase() {
 		cartPage.clickCompletePurchaseButton();
+	}
+
+	public String enterTextIntoGoogleSearch(String key) {
+		String currentContext = AndroidAppOperations.switchContext(driver);
+		cartPage.enterSearchKey(key);
+		return currentContext;
 	}
 }

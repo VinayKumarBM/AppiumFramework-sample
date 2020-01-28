@@ -56,4 +56,8 @@ public class GeneralStoreHomePage extends AndroidBasePage {
 		LOG.info("Error Message: "+errorMsg);
 		return errorMsg;
 	}
+	
+	public boolean isCountryDropdownDisplayed() {
+			return AndroidAppOperations.isElementPresent(driver, countryDropdown);
+	}
 }
