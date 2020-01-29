@@ -1,20 +1,14 @@
 package com.android.test;
 
-import static org.testng.Assert.assertTrue;
-
 import java.util.ArrayList;
 import java.util.List;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.Keys;
 import org.testng.annotations.Test;
 
 import com.android.app.modules.CartModule;
 import com.android.app.modules.GeneralStoreHomeModule;
 import com.android.app.modules.ProductsModule;
 import com.appium.base.test.AndroidAppTestBase;
-import com.appium.utils.AndroidAppOperations;
-import com.appium.utils.WaitUtil;
 
 public class GenralStoreTest extends AndroidAppTestBase{
 
