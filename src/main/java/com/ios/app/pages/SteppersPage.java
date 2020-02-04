@@ -3,20 +3,20 @@ package com.ios.app.pages;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.appium.base.page.IOSBasePage;
+import com.appium.base.page.BasePage;
 import com.appium.utils.WaitUtil;
 
-import io.appium.java_client.ios.IOSDriver;
-import io.appium.java_client.ios.IOSElement;
+import io.appium.java_client.AppiumDriver;
+import io.appium.java_client.MobileElement;
 
-public class SteppersPage extends IOSBasePage{
+public class SteppersPage extends BasePage{
 
 	private final Logger LOG = LoggerFactory.getLogger(SteppersPage.class);
 	private final String stepperIncrementXpath = "(//XCUIElementTypeOther[@label='%s']/../following-sibling::XCUIElementTypeCell/XCUIElementTypeButton[@name='Increment'])[1]";
 	private final String stepperDecrementXpath = "(//XCUIElementTypeOther[@label='%s']/../following-sibling::XCUIElementTypeCell/XCUIElementTypeButton[@name='Decrement'])[1]";
 	private final String stepperCountXpath = "(//XCUIElementTypeOther[@label='%s']/../following-sibling::XCUIElementTypeCell/XCUIElementTypeStaticText)[1]";
 	
-	public SteppersPage(IOSDriver<IOSElement> driver) {
+	public SteppersPage(AppiumDriver<MobileElement> driver) {
 		super(driver);
 	}
 	

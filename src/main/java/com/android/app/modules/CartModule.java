@@ -2,21 +2,18 @@ package com.android.app.modules;
 
 import static org.testng.Assert.assertEquals;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.Keys;
-
 import com.android.app.pages.CartPage;
-import com.appium.utils.AndroidAppOperations;
+import com.appium.utils.AppOperations;
 
-import io.appium.java_client.android.AndroidDriver;
-import io.appium.java_client.android.AndroidElement;
+import io.appium.java_client.AppiumDriver;
+import io.appium.java_client.MobileElement;
 
 public class CartModule {
 
-	private AndroidDriver<AndroidElement> driver;
+	private AppiumDriver<MobileElement> driver;
 	private CartPage cartPage;
 
-	public CartModule(AndroidDriver<AndroidElement> driver) {
+	public CartModule(AppiumDriver<MobileElement> driver) {
 		this.driver = driver;
 		cartPage = new CartPage(driver);
 	}
@@ -55,7 +52,7 @@ public class CartModule {
 	}
 
 	public String enterTextIntoGoogleSearch(String key) {
-		String currentContext = AndroidAppOperations.switchContext(driver);
+		String currentContext = AppOperations.switchContext(driver);
 		cartPage.enterSearchKey(key);
 		return currentContext;
 	}

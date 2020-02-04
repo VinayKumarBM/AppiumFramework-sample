@@ -1,14 +1,15 @@
 package com.ios.web.modules;
 
-import org.openqa.selenium.WebDriver;
-
 import com.ios.web.pages.HomePage;
 
+import io.appium.java_client.AppiumDriver;
+import io.appium.java_client.MobileElement;
+
 public class HomeModule {
-	private WebDriver driver;
+	private AppiumDriver<MobileElement> driver;
 	private HomePage homePage;
 	
-	public HomeModule(WebDriver driver) {
+	public HomeModule(AppiumDriver<MobileElement> driver) {
 		this.driver = driver;
 		homePage = new HomePage(driver);
 	}

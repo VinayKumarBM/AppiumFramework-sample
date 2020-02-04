@@ -4,14 +4,14 @@ import static org.testng.Assert.assertEquals;
 
 import com.ios.app.pages.SteppersPage;
 
-import io.appium.java_client.ios.IOSDriver;
-import io.appium.java_client.ios.IOSElement;
+import io.appium.java_client.AppiumDriver;
+import io.appium.java_client.MobileElement;
 
 public class StepperModule {
-	private IOSDriver<IOSElement> driver;
+	private AppiumDriver<MobileElement> driver;
 	private SteppersPage steppersPage;
 	
-	public StepperModule(IOSDriver<IOSElement> driver) {
+	public StepperModule(AppiumDriver<MobileElement> driver) {
 		this.driver = driver;
 		steppersPage = new SteppersPage(driver);
 	}

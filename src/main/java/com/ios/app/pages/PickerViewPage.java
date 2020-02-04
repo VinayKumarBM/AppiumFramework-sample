@@ -2,15 +2,15 @@ package com.ios.app.pages;
 
 import org.openqa.selenium.WebElement;
 
-import com.appium.base.page.IOSBasePage;
+import com.appium.base.page.BasePage;
 
-import io.appium.java_client.ios.IOSDriver;
-import io.appium.java_client.ios.IOSElement;
+import io.appium.java_client.AppiumDriver;
+import io.appium.java_client.MobileElement;
 import io.appium.java_client.pagefactory.iOSXCUITFindBy;
 
-public class PickerViewPage extends IOSBasePage{
+public class PickerViewPage extends BasePage{
 
-	public PickerViewPage(IOSDriver<IOSElement> driver) {
+	public PickerViewPage(AppiumDriver<MobileElement> driver) {
 		super(driver);
 	}
 

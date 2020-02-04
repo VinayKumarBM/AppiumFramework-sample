@@ -4,14 +4,14 @@ import org.openqa.selenium.WebElement;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.appium.base.page.AndroidBasePage;
-import com.appium.utils.AndroidAppOperations;
+import com.appium.base.page.BasePage;
+import com.appium.utils.AppOperations;
 
-import io.appium.java_client.android.AndroidDriver;
-import io.appium.java_client.android.AndroidElement;
+import io.appium.java_client.AppiumDriver;
+import io.appium.java_client.MobileElement;
 import io.appium.java_client.pagefactory.AndroidFindBy;
 
-public class CalculatorAppPage extends AndroidBasePage {
+public class CalculatorAppPage extends BasePage {
 	private final Logger LOG = LoggerFactory.getLogger(CalculatorAppPage.class);
 	private final String numberPadXpath = "//*[@text='%s']";
 	private final String operationsXpath = "//*[@content-desc='%s']";
@@ -28,7 +28,7 @@ public class CalculatorAppPage extends AndroidBasePage {
 	@AndroidFindBy (xpath = "//*[@text='DEL']")
 	private WebElement deleteButton;
 	
-	public CalculatorAppPage(AndroidDriver<AndroidElement> driver) {
+	public CalculatorAppPage(AppiumDriver<MobileElement> driver) {
 		super(driver);
 	}
 	
@@ -45,7 +45,7 @@ public class CalculatorAppPage extends AndroidBasePage {
 	}
 	
 	public boolean isDeleteButtonDisplayed() {
-		return AndroidAppOperations.isElementPresent(driver, deleteButton);
+		return AppOperations.isElementPresent(driver, deleteButton);
 	}
 	
 	public void performOperation(String operation) {

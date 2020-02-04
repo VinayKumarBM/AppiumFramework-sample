@@ -5,15 +5,15 @@ import static org.testng.Assert.assertTrue;
 
 import com.android.app.pages.CalculatorAppPage;
 
-import io.appium.java_client.android.AndroidDriver;
-import io.appium.java_client.android.AndroidElement;
+import io.appium.java_client.AppiumDriver;
+import io.appium.java_client.MobileElement;
 
 public class CalculatorModule {
 
-	private AndroidDriver<AndroidElement> driver;
+	private AppiumDriver<MobileElement> driver;
 	private CalculatorAppPage calculator;
 	
-	public CalculatorModule(AndroidDriver<AndroidElement> driver) {
+	public CalculatorModule(AppiumDriver<MobileElement> driver) {
 		this.driver = driver;
 		calculator = new CalculatorAppPage(driver);
 	}

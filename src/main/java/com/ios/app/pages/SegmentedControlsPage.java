@@ -4,14 +4,14 @@ import org.openqa.selenium.WebElement;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.appium.base.page.IOSBasePage;
-import com.appium.utils.IOSAppOperations;
+import com.appium.base.page.BasePage;
+import com.appium.utils.AppOperations;
 
-import io.appium.java_client.ios.IOSDriver;
-import io.appium.java_client.ios.IOSElement;
+import io.appium.java_client.AppiumDriver;
+import io.appium.java_client.MobileElement;
 import io.appium.java_client.pagefactory.iOSXCUITFindBy;
 
-public class SegmentedControlsPage extends IOSBasePage {
+public class SegmentedControlsPage extends BasePage {
 
 	private final Logger LOG = LoggerFactory.getLogger(SegmentedControlsPage.class);
 	
@@ -25,7 +25,7 @@ public class SegmentedControlsPage extends IOSBasePage {
 	private WebElement tintedCheckButton;
 	
 	
-	public SegmentedControlsPage(IOSDriver<IOSElement> driver) {
+	public SegmentedControlsPage(AppiumDriver<MobileElement> driver) {
 		super(driver);
 	}
 	
@@ -34,10 +34,10 @@ public class SegmentedControlsPage extends IOSBasePage {
 	}
 
 	public void longPressBurstButton() {
-		IOSAppOperations.longPressElement(driver, customBurstButton);
+		AppOperations.longPressElement(driver, customBurstButton);
 	}
 	
 	public void tapTintedCheck() {
-		IOSAppOperations.tapOnElement(driver, tintedCheckButton);
+		AppOperations.tapOnElement(driver, tintedCheckButton);
 	}
 }

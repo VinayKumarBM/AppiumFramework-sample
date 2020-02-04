@@ -21,14 +21,14 @@ public class WebBrowserTest extends AndroidWebTestBase {
 		LoginModule loginModule = new LoginModule(driver);
 		loginModule.loginToAccount("test123@yahoo.com", "test123");
 		MyAccountModule accountModule = new MyAccountModule(driver);
-		accountModule.verifyPageHeading("My Account");
+		accountModule.verifyPageHeading("My account");
 		accountModule.scrolToFooter();
 		WaitUtil.pause(2);
 		LOG.info("Scrolled To Footer");
-		WebOperations.scrollToTop(driver);
+		WebOperations.scrollOnAndroidWebPage(driver, 5, 30, 75);
 		WaitUtil.pause(2);
 		LOG.info("Scrolled To Top of Page");
-		WebOperations.scrollToBottom(driver);
+		WebOperations.scrollOnAndroidWebPage(driver, 5, 75, 30);
 		WaitUtil.pause(2);
 		LOG.info("Scrolled To Bottom of Page");
 	}

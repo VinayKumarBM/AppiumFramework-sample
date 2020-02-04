@@ -4,14 +4,14 @@ import static org.testng.Assert.assertFalse;
 
 import com.ios.app.pages.SegmentedControlsPage;
 
-import io.appium.java_client.ios.IOSDriver;
-import io.appium.java_client.ios.IOSElement;
+import io.appium.java_client.AppiumDriver;
+import io.appium.java_client.MobileElement;
 
 public class SegmentedControlsModule {
-	private IOSDriver<IOSElement> driver;
+	private AppiumDriver<MobileElement> driver;
 	private SegmentedControlsPage segmentedControlsPage;
 
-	public SegmentedControlsModule(IOSDriver<IOSElement> driver) {
+	public SegmentedControlsModule(AppiumDriver<MobileElement> driver) {
 		this.driver = driver;
 		segmentedControlsPage = new SegmentedControlsPage(driver);
 	}

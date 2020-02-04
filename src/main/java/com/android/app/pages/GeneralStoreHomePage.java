@@ -4,14 +4,16 @@ import org.openqa.selenium.WebElement;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.appium.base.page.AndroidBasePage;
-import com.appium.utils.AndroidAppOperations;
+import com.appium.base.page.BasePage;
+import com.appium.utils.AppOperations;
 
+import io.appium.java_client.AppiumDriver;
+import io.appium.java_client.MobileElement;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.android.AndroidElement;
 import io.appium.java_client.pagefactory.AndroidFindBy;
 
-public class GeneralStoreHomePage extends AndroidBasePage {
+public class GeneralStoreHomePage extends BasePage {
 	
 	private final Logger LOG = LoggerFactory.getLogger(GeneralStoreHomePage.class);
 	private final String genderXpath = "//android.widget.RadioButton[@text='%s']";
@@ -28,19 +30,19 @@ public class GeneralStoreHomePage extends AndroidBasePage {
 	@AndroidFindBy (xpath = "//android.widget.Toast[1]")
 	private WebElement errorMessage;
 	
-	public GeneralStoreHomePage(AndroidDriver<AndroidElement> driver) {
+	public GeneralStoreHomePage(AppiumDriver<MobileElement> driver) {
 		super(driver);
 	}
 	
 	public void selectCountry(String country) {
 		countryDropdown.click();
-		AndroidAppOperations.scrollToContainedText(driver, country).click();
+		AppOperations.scrollToContainedTextInAndroid(driver, country).click();
 	}
 	
 	public void enterName(String name) {
 		nameInputField.clear();
 		nameInputField.sendKeys(name);
-		AndroidAppOperations.hideKeyBoard(driver);
+		AppOperations.hideKeyBoard(driver);
 	}
 	
 	public void selectGender(String gender) {
@@ -58,6 +60,6 @@ public class GeneralStoreHomePage extends AndroidBasePage {
 	}
 	
 	public boolean isCountryDropdownDisplayed() {
-			return AndroidAppOperations.isElementPresent(driver, countryDropdown);
+			return AppOperations.isElementPresent(driver, countryDropdown);
 	}
 }

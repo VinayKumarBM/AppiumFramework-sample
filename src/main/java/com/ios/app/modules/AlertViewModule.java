@@ -2,14 +2,14 @@ package com.ios.app.modules;
 
 import com.ios.app.pages.AlertViewPage;
 
-import io.appium.java_client.ios.IOSDriver;
-import io.appium.java_client.ios.IOSElement;
+import io.appium.java_client.AppiumDriver;
+import io.appium.java_client.MobileElement;
 
 public class AlertViewModule {
-	private IOSDriver<IOSElement> driver;
+	private AppiumDriver<MobileElement> driver;
 	private AlertViewPage alertViewPage;
 	
-	public AlertViewModule(IOSDriver<IOSElement> driver) {
+	public AlertViewModule(AppiumDriver<MobileElement> driver) {
 		this.driver = driver;
 		alertViewPage = new AlertViewPage(driver); 
 	}

@@ -2,16 +2,16 @@ package com.ios.app.pages;
 
 import org.openqa.selenium.WebElement;
 
-import com.appium.base.page.IOSBasePage;
-import com.appium.utils.IOSAppOperations;
+import com.appium.base.page.BasePage;
+import com.appium.utils.AppOperations;
 
-import io.appium.java_client.ios.IOSDriver;
-import io.appium.java_client.ios.IOSElement;
+import io.appium.java_client.AppiumDriver;
+import io.appium.java_client.MobileElement;
 import io.appium.java_client.pagefactory.iOSXCUITFindBy;
 
-public class UIKitCatalogPage extends IOSBasePage{
+public class UIKitCatalogPage extends BasePage{
 
-	public UIKitCatalogPage(IOSDriver<IOSElement> driver) {
+	public UIKitCatalogPage(AppiumDriver<MobileElement> driver) {
 		super(driver);
 	}
 
@@ -61,6 +61,6 @@ public class UIKitCatalogPage extends IOSBasePage{
 	}
 
 	public void clickWebView() {
-		IOSAppOperations.scrollAndClick(driver, webViewCatalog, "down");
+		AppOperations.scrollAndClick(driver, webViewCatalog, "down");
 	}
 }

@@ -8,11 +8,11 @@ import org.testng.annotations.BeforeMethod;
 
 import com.appium.utils.Config;
 
-import io.appium.java_client.ios.IOSDriver;
-import io.appium.java_client.ios.IOSElement;
+import io.appium.java_client.AppiumDriver;
+import io.appium.java_client.MobileElement;
 
 public class IOSWebTestBase extends TestBase{
-	protected IOSDriver<IOSElement> driver;
+	protected AppiumDriver<MobileElement> driver;
 	
 	@BeforeMethod
 	public void launchIOSWebBrowser() {		

@@ -2,14 +2,14 @@ package com.ios.app.modules;
 
 import com.ios.app.pages.UIKitCatalogPage;
 
-import io.appium.java_client.ios.IOSDriver;
-import io.appium.java_client.ios.IOSElement;
+import io.appium.java_client.AppiumDriver;
+import io.appium.java_client.MobileElement;
 
 public class UIKitCatalogModule {
-	private IOSDriver<IOSElement> driver;
+	private AppiumDriver<MobileElement> driver;
 	private UIKitCatalogPage catalogPage;
 	
-	public UIKitCatalogModule(IOSDriver<IOSElement> driver) {
+	public UIKitCatalogModule(AppiumDriver<MobileElement> driver) {
 		this.driver = driver;
 		catalogPage = new UIKitCatalogPage(driver); 
 	}

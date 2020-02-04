@@ -1,15 +1,17 @@
 package com.ios.web.pages;
 
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.appium.base.page.WebBasePage;
+import com.appium.base.page.BasePage;
 import com.appium.utils.WebOperations;
 
-public class MyAccountPage extends WebBasePage {
+import io.appium.java_client.AppiumDriver;
+import io.appium.java_client.MobileElement;
+
+public class MyAccountPage extends BasePage {
 	
 	private final Logger LOG = LoggerFactory.getLogger(MyAccountPage.class);
 			
@@ -19,7 +21,7 @@ public class MyAccountPage extends WebBasePage {
 	@FindBy (id = "footer")
 	private WebElement footerSection;
 	
-	public MyAccountPage(WebDriver driver) {
+	public MyAccountPage(AppiumDriver<MobileElement> driver) {
 		super(driver);
 	}
 

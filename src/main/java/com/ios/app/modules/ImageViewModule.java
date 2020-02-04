@@ -2,14 +2,14 @@ package com.ios.app.modules;
 
 import com.ios.app.pages.ImageViewPage;
 
-import io.appium.java_client.ios.IOSDriver;
-import io.appium.java_client.ios.IOSElement;
+import io.appium.java_client.AppiumDriver;
+import io.appium.java_client.MobileElement;
 
 public class ImageViewModule {
-	private IOSDriver<IOSElement> driver;
+	private AppiumDriver<MobileElement> driver;
 	private ImageViewPage imageViewPage;
 	
-	public ImageViewModule(IOSDriver<IOSElement> driver) {
+	public ImageViewModule(AppiumDriver<MobileElement> driver) {
 		this.driver = driver;
 		imageViewPage = new ImageViewPage(driver); 
 	}

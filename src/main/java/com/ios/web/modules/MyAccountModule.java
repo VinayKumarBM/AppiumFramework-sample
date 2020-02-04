@@ -2,15 +2,16 @@ package com.ios.web.modules;
 
 import static org.testng.Assert.assertEquals;
 
-import org.openqa.selenium.WebDriver;
-
 import com.ios.web.pages.MyAccountPage;
 
+import io.appium.java_client.AppiumDriver;
+import io.appium.java_client.MobileElement;
+
 public class MyAccountModule {
-	private WebDriver driver;
+	private AppiumDriver<MobileElement> driver;
 	private MyAccountPage myAccountPage;
 	
-	public MyAccountModule(WebDriver driver) {
+	public MyAccountModule(AppiumDriver<MobileElement> driver) {
 		this.driver = driver;
 		myAccountPage = new MyAccountPage(driver);
 	}

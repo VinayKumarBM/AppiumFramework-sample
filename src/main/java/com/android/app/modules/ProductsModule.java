@@ -4,15 +4,15 @@ import java.util.List;
 
 import com.android.app.pages.ProductsPage;
 
-import io.appium.java_client.android.AndroidDriver;
-import io.appium.java_client.android.AndroidElement;
+import io.appium.java_client.AppiumDriver;
+import io.appium.java_client.MobileElement;
 
 public class ProductsModule {
 
-	private AndroidDriver<AndroidElement> driver;
+	private AppiumDriver<MobileElement> driver;
 	private ProductsPage productsPage;
 	
-	public ProductsModule(AndroidDriver<AndroidElement> driver) {
+	public ProductsModule(AppiumDriver<MobileElement> driver) {
 		this.driver = driver;
 		productsPage = new ProductsPage(driver);
 	}

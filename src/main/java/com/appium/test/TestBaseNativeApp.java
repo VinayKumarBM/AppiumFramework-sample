@@ -11,12 +11,12 @@ import org.testng.annotations.BeforeMethod;
 
 import com.appium.utils.Config;
 
+import io.appium.java_client.MobileElement;
 import io.appium.java_client.android.AndroidDriver;
-import io.appium.java_client.android.AndroidElement;
 import io.appium.java_client.remote.MobileCapabilityType;
 
 public class TestBaseNativeApp {
-	protected AndroidDriver<AndroidElement>  driver;
+	protected AndroidDriver<MobileElement>  driver;
 	private static File appDir = new File("src/test/resources/App");
 	
 	@BeforeMethod
@@ -29,7 +29,7 @@ public class TestBaseNativeApp {
 		capabilities.setCapability(MobileCapabilityType.AUTOMATION_NAME,"uiautomator2");
 		capabilities.setCapability(MobileCapabilityType.APP, app.getAbsolutePath());
 		capabilities.setCapability("chromedriverExecutable", System.getProperty("user.dir")+"/driver/chromedriver.exe");
-		driver = new AndroidDriver<AndroidElement>(new URL("http://127.0.0.1:4723/wd/hub"), capabilities);
+		driver = new AndroidDriver<MobileElement>(new URL("http://127.0.0.1:4723/wd/hub"), capabilities);
 		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		System.out.println("Successfully launched the application in the AVD!!");
 	}

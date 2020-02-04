@@ -8,14 +8,14 @@ import org.openqa.selenium.support.FindBy;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.appium.base.page.AndroidBasePage;
-import com.appium.utils.AndroidAppOperations;
+import com.appium.base.page.BasePage;
+import com.appium.utils.AppOperations;
 
-import io.appium.java_client.android.AndroidDriver;
-import io.appium.java_client.android.AndroidElement;
+import io.appium.java_client.AppiumDriver;
+import io.appium.java_client.MobileElement;
 import io.appium.java_client.pagefactory.AndroidFindBy;
 
-public class CartPage extends AndroidBasePage {
+public class CartPage extends BasePage {
 	
 	private final Logger LOG = LoggerFactory.getLogger(CartPage.class);
 	private final String addToCartXpath = "//*[@text='%s']/..//*[@text='ADD TO CART']";
@@ -47,12 +47,12 @@ public class CartPage extends AndroidBasePage {
 	@FindBy (name = "q")
 	private WebElement googleSearchInputbox;
 	
-	public CartPage(AndroidDriver<AndroidElement> driver) {
+	public CartPage(AppiumDriver<MobileElement> driver) {
 		super(driver);
 	}
 	
 	public void addProdutToCart(String productName) {
-		AndroidAppOperations.scrollToContainedText(driver, productName);
+		AppOperations.scrollToContainedTextInAndroid(driver, productName);
 		driver.findElementByXPath(String.format(addToCartXpath, productName)).click();
 	}
 	
@@ -80,11 +80,11 @@ public class CartPage extends AndroidBasePage {
 	}
 
 	public void tapOnSendEmailCheckbox() {
-		AndroidAppOperations.tapOnElement(driver, sendEmailCheckbox);
+		AppOperations.tapOnElement(driver, sendEmailCheckbox);
 	}
 	
 	public void longPressTnCButton() {
-		AndroidAppOperations.longPressElement(driver, termsAndConditionsButton);
+		AppOperations.longPressElement(driver, termsAndConditionsButton);
 	}
 	
 	public String getTermsAndConditionsTitle() {		

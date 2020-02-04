@@ -23,14 +23,11 @@ public class WebBrowserTest extends IOSWebTestBase {
 		MyAccountModule accountModule = new MyAccountModule(driver);
 		accountModule.verifyPageHeading("My account");
 		accountModule.scrolToFooter();
-		WaitUtil.pause(2);
+		WaitUtil.pause(1);
 		LOG.info("Scrolled To Footer");
-		WebOperations.scrollToTop(driver);
-		WaitUtil.pause(2);
-		LOG.info("Scrolled To Top of Page");
-		WebOperations.scrollToBottom(driver);
-		WaitUtil.pause(2);
-		LOG.info("Scrolled To Bottom of Page");
+		WebOperations.scroll(driver, 5, 30, 75);
+		WaitUtil.pause(1);
+		LOG.info("Scrolled To Top");
 	}
 
 	@Test

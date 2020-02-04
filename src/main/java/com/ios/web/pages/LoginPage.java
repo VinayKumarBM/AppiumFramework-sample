@@ -1,15 +1,17 @@
 package com.ios.web.pages;
 
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.appium.base.page.WebBasePage;
+import com.appium.base.page.BasePage;
 import com.appium.utils.WaitUtil;
 
-public class LoginPage extends WebBasePage {
+import io.appium.java_client.AppiumDriver;
+import io.appium.java_client.MobileElement;
+
+public class LoginPage extends BasePage {
 	
 	private final Logger LOG = LoggerFactory.getLogger(LoginPage.class);
 
@@ -25,7 +27,7 @@ public class LoginPage extends WebBasePage {
 	@FindBy (xpath = "//div[@class='alert alert-danger']//li")
 	private WebElement errorMessageText;
 	
-	public LoginPage(WebDriver driver) {
+	public LoginPage(AppiumDriver<MobileElement> driver) {
 		super(driver);
 	}
 

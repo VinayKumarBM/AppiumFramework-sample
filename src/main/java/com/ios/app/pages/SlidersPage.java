@@ -4,14 +4,14 @@ import org.openqa.selenium.WebElement;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.appium.base.page.IOSBasePage;
+import com.appium.base.page.BasePage;
 import com.appium.utils.WaitUtil;
 
-import io.appium.java_client.ios.IOSDriver;
-import io.appium.java_client.ios.IOSElement;
+import io.appium.java_client.AppiumDriver;
+import io.appium.java_client.MobileElement;
 import io.appium.java_client.pagefactory.iOSXCUITFindBy;
 
-public class SlidersPage extends IOSBasePage {
+public class SlidersPage extends BasePage {
 
 	private final Logger LOG = LoggerFactory.getLogger(SlidersPage.class);
 	private final String sliderXpath = "(//*[@label='%s']/../following-sibling::XCUIElementTypeCell/XCUIElementTypeSlider)[1]";
@@ -19,7 +19,7 @@ public class SlidersPage extends IOSBasePage {
 	@iOSXCUITFindBy(accessibility = "Animated")
 	private WebElement image;
 	
-	public SlidersPage(IOSDriver<IOSElement> driver) {
+	public SlidersPage(AppiumDriver<MobileElement> driver) {
 		super(driver);
 	}
 		

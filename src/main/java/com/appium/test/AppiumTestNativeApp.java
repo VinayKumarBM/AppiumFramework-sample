@@ -12,10 +12,10 @@ import java.time.Duration;
 import org.openqa.selenium.WebElement;
 import org.testng.annotations.Test;
 
-import com.appium.utils.AndroidAppOperations;
+import com.appium.utils.AppOperations;
 
+import io.appium.java_client.MobileElement;
 import io.appium.java_client.TouchAction;
-import io.appium.java_client.android.AndroidElement;
 import io.appium.java_client.android.AndroidTouchAction;
 
 
@@ -25,7 +25,7 @@ public class AppiumTestNativeApp extends TestBaseNativeApp{
 	public void setWiFiName() throws Exception {
 		driver.findElementByXPath("//android.widget.TextView[@text='Preference']").click();
 		driver.findElementByAndroidUIAutomator("text(\"3. Preference dependencies\")").click();
-		AndroidElement wiFiCheckbox = driver.findElementById("android:id/checkbox");
+		MobileElement wiFiCheckbox = driver.findElementById("android:id/checkbox");
 		if (! wiFiCheckbox.isSelected()) {
 			wiFiCheckbox.click();
 		}
@@ -40,7 +40,7 @@ public class AppiumTestNativeApp extends TestBaseNativeApp{
 		String wiFiName = driver.findElementByClassName("android.widget.EditText").getAttribute("text");
 		System.out.println("WiFi Name Entered: "+wiFiName);
 		assertEquals(wiFiName, nameOfWiFi,"WiFi Name was not set correctly ");
-		AndroidAppOperations.hideKeyBoard(driver);
+		AppOperations.hideKeyBoard(driver);
 	}
 
 	@Test //(enabled = false)
@@ -89,7 +89,7 @@ public class AppiumTestNativeApp extends TestBaseNativeApp{
 		WebElement source = driver.findElementsByClassName("android.view.View").get(0);
 		WebElement destination = driver.findElementsByClassName("android.view.View").get(1);
 		new TouchAction(driver).longPress(element(source)).moveTo(element(destination)).release().perform();
-		AndroidAppOperations.pressBackKey(driver);
+		AppOperations.pressBackKeyAndroid(driver);
 	}
 
 }

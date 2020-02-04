@@ -18,10 +18,10 @@ import org.testng.annotations.BeforeSuite;
 import com.appium.utils.Config;
 import com.appium.utils.ScreenshotUtil;
 
+import io.appium.java_client.AppiumDriver;
+import io.appium.java_client.MobileElement;
 import io.appium.java_client.android.AndroidDriver;
-import io.appium.java_client.android.AndroidElement;
 import io.appium.java_client.ios.IOSDriver;
-import io.appium.java_client.ios.IOSElement;
 import io.appium.java_client.remote.AutomationName;
 import io.appium.java_client.remote.MobileCapabilityType;
 import io.appium.java_client.service.local.AppiumDriverLocalService;
@@ -33,13 +33,13 @@ public abstract class TestBase {
 	private final File driverDir = new File(Config.getProperties("chrome.driver.location"));
 	private AppiumDriverLocalService service;
 
-	protected IOSDriver<IOSElement> launchIOSApplication(String appType) {
+	protected AppiumDriver<MobileElement> launchIOSApplication(String appType) {
 		String device = System.getProperty("deviceName");
 		if(device==null) {
 			device = Config.getProperties("iOS.device");
 		}
 		LOG.info(device);
-		IOSDriver<IOSElement> driver = null;
+		AppiumDriver<MobileElement> driver = null;
 		DesiredCapabilities capabilities = new DesiredCapabilities();
 		capabilities.setCapability(MobileCapabilityType.DEVICE_NAME, device);
 		capabilities.setCapability(MobileCapabilityType.PLATFORM_VERSION, Config.getProperties("iOS.version"));		
@@ -53,7 +53,7 @@ public abstract class TestBase {
 			capabilities.setCapability(MobileCapabilityType.BROWSER_NAME, Config.getProperties("iOS.browser"));
 		}
 		try {
-			driver = new IOSDriver<IOSElement>(new URL(Config.getProperties("appium.server.url")),capabilities);
+			driver = new IOSDriver<MobileElement>(new URL(Config.getProperties("appium.server.url")),capabilities);
 			driver.manage().timeouts().implicitlyWait(Config.getIntegerProperty("implicitWait"), TimeUnit.SECONDS);
 		} catch (MalformedURLException e) {
 			LOG.info("IOS App launch failed: "+e.getMessage());
@@ -62,7 +62,7 @@ public abstract class TestBase {
 		return driver;
 	}
 
-	protected AndroidDriver<AndroidElement> launchAndroidApplication(String appType) {		
+	protected AppiumDriver<MobileElement> launchAndroidApplication(String appType) {		
 		DesiredCapabilities capabilities = new DesiredCapabilities();
 		capabilities.setCapability(MobileCapabilityType.DEVICE_NAME, Config.getProperties("android.device"));
 		capabilities.setCapability(MobileCapabilityType.AUTOMATION_NAME,"uiautomator2");
@@ -80,9 +80,9 @@ public abstract class TestBase {
 		}
 		//capabilities.setCapability("chromedriverExecutable", driverDir.getAbsolutePath());
 
-		AndroidDriver<AndroidElement> driver = null;
+		AppiumDriver<MobileElement> driver = null;
 		try {
-			driver = new AndroidDriver<AndroidElement>(new URL(Config.getProperties("appium.server.url")), capabilities);
+			driver = new AndroidDriver<MobileElement>(new URL(Config.getProperties("appium.server.url")), capabilities);
 			driver.manage().timeouts().implicitlyWait(Config.getIntegerProperty("implicitWait"), TimeUnit.SECONDS);
 		} catch (MalformedURLException e) {
 			LOG.info("IOS App launch failed: "+e.getMessage());
