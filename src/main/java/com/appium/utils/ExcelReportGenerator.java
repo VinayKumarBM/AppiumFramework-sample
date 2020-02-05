@@ -16,7 +16,6 @@ import org.apache.poi.xssf.usermodel.XSSFClientAnchor;
 import java.io.OutputStream;
 import org.jfree.chart.ChartUtils;
 import java.io.ByteArrayOutputStream;
-import java.awt.Paint;
 import java.awt.Color;
 import org.jfree.chart.plot.PiePlot;
 import org.jfree.data.general.PieDataset;
@@ -111,13 +110,13 @@ public class ExcelReportGenerator
         my_pie_chart_data.setValue((Comparable)"Skipped", (double)Integer.parseInt(skipped));
         final JFreeChart myPieChart = ChartFactory.createPieChart("Execution Status in PIE Chart", (PieDataset)my_pie_chart_data, true, true, false);
         final PiePlot plot = (PiePlot)myPieChart.getPlot();
-        plot.setSectionPaint(1, (Paint)new Color(255, 0, 0));
-        plot.setSectionPaint(0, (Paint)new Color(0, 128, 0));
-        plot.setSectionPaint(2, (Paint)new Color(255, 255, 0));
+        plot.setSectionPaint("Passed", Color.GREEN);
+        plot.setSectionPaint("Failed", Color.RED);
+        plot.setSectionPaint("Skipped", Color.ORANGE);
         final int width = 500;
         final int height = 500;
         final ByteArrayOutputStream chart_out = new ByteArrayOutputStream();
-        ChartUtils.writeChartAsPNG((OutputStream)chart_out, myPieChart, width, height);
+        ChartUtils.writeChartAsJPEG((OutputStream)chart_out, (float) 1.0, myPieChart, width, height);
         final int my_picture_id = ExcelReportGenerator.workbook.addPicture(chart_out.toByteArray(), 5);
         chart_out.close();
         final XSSFDrawing drawing = ExcelReportGenerator.sheet.createDrawingPatriarch();
@@ -256,13 +255,13 @@ public class ExcelReportGenerator
         my_pie_chart_data.setValue((Comparable)"Skipped", (double)Integer.parseInt(skipped));
         final JFreeChart myPieChart = ChartFactory.createPieChart("Execution Status in PIE Chart", (PieDataset)my_pie_chart_data, true, true, false);
         final PiePlot plot = (PiePlot)myPieChart.getPlot();
-        plot.setSectionPaint(1, (Paint)new Color(255, 0, 0));
-        plot.setSectionPaint(0, (Paint)new Color(0, 128, 0));
-        plot.setSectionPaint(2, (Paint)new Color(255, 255, 0));
+        plot.setSectionPaint("Passed", Color.GREEN);
+        plot.setSectionPaint("Failed", Color.RED);
+        plot.setSectionPaint("Skipped", Color.ORANGE);
         final int width = 500;
         final int height = 500;
         final ByteArrayOutputStream chart_out = new ByteArrayOutputStream();
-        ChartUtils.writeChartAsPNG((OutputStream)chart_out, myPieChart, width, height);
+        ChartUtils.writeChartAsJPEG((OutputStream)chart_out, (float) 1.0, myPieChart, width, height);
         final int my_picture_id = ExcelReportGenerator.workbook.addPicture(chart_out.toByteArray(), 5);
         chart_out.close();
         final XSSFDrawing drawing = ExcelReportGenerator.sheet.createDrawingPatriarch();
@@ -401,7 +400,7 @@ public class ExcelReportGenerator
     
     private static void applyCellStyle(final short index) {
         ExcelReportGenerator.style = ExcelReportGenerator.workbook.createCellStyle();
-        ExcelReportGenerator.font.setFontName("Comic Sans MS");
+        ExcelReportGenerator.font.setFontName("Times New Roman");
         ExcelReportGenerator.font.setFontHeight(12.0);
         ExcelReportGenerator.style.setFont((Font)ExcelReportGenerator.font);
         ExcelReportGenerator.style.setFillForegroundColor(index);
@@ -415,7 +414,7 @@ public class ExcelReportGenerator
     
     private static void applyCellHeaderStyle(final short index) {
         ExcelReportGenerator.headerStyle = ExcelReportGenerator.workbook.createCellStyle();
-        ExcelReportGenerator.headerFont.setFontName("Comic Sans MS");
+        ExcelReportGenerator.headerFont.setFontName("Times New Roman");
         ExcelReportGenerator.headerFont.setFontHeight(14.0);
         ExcelReportGenerator.headerFont.setBold(true);
         ExcelReportGenerator.headerStyle.setFont((Font)ExcelReportGenerator.headerFont);
