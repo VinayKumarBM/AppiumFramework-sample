@@ -2,7 +2,7 @@ package com.ios.app.pages;
 
 import org.openqa.selenium.WebElement;
 
-import com.appium.base.page.BasePage;
+import com.appium.base.BasePage;
 
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileElement;

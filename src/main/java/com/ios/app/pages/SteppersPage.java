@@ -3,7 +3,7 @@ package com.ios.app.pages;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.appium.base.page.BasePage;
+import com.appium.base.BasePage;
 import com.appium.utils.WaitUtil;
 
 import io.appium.java_client.AppiumDriver;

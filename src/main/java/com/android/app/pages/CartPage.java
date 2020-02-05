@@ -8,7 +8,7 @@ import org.openqa.selenium.support.FindBy;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.appium.base.page.BasePage;
+import com.appium.base.BasePage;
 import com.appium.utils.AppOperations;
 
 import io.appium.java_client.AppiumDriver;

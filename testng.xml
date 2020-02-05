@@ -7,16 +7,16 @@
 	</listeners>
 	<test name="IOS Tests">
 		<classes>
-			<class name="com.ios.test.WebBrowserTest" />
- 			<class name="com.ios.test.UIKitCatalogTest" />
+			<class name="com.ios.web.test.WebBrowserTest" />
+ 			<class name="com.ios.app.test.UIKitCatalogTest" />
 		</classes>
 	</test> 
 	
 	<test name="Android Tests">
 		<classes>
-			<class name="com.android.test.GenralStoreTest" />
-			<class name="com.android.test.CalculatorAppTest" />	
-			<class name="com.android.test.WebBrowserTest" />	 
+			<class name="com.android.app.test.GenralStoreTest" />
+			<class name="com.android.installed.app.test.CalculatorAppTest" />	
+			<class name="com.android.web.test.WebBrowserTest" />	 
 		</classes>
 	</test> 
 </suite> 
