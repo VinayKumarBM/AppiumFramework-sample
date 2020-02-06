@@ -14,6 +14,9 @@ import org.w3c.dom.Document;
 import javax.xml.parsers.DocumentBuilder;
 import org.apache.poi.xssf.usermodel.XSSFClientAnchor;
 import java.io.OutputStream;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+
 import org.jfree.chart.ChartUtils;
 import java.io.ByteArrayOutputStream;
 import java.awt.Color;
@@ -95,9 +98,9 @@ public class ExcelReportGenerator
         setCellHeaderData(ExcelReportGenerator.summarySheetName, 0, 4, "Total", (short)49);
         setCellHeaderData(ExcelReportGenerator.summarySheetName, 1, 4, total, (short)49);
         setCellData(ExcelReportGenerator.summarySheetName, 0, 5, "Start Time", (short)9);
-        setCellData(ExcelReportGenerator.summarySheetName, 1, 5, test_suite_startTime, (short)9);
+        setCellData(ExcelReportGenerator.summarySheetName, 1, 5, convertDate(test_suite_startTime), (short)9);
         setCellData(ExcelReportGenerator.summarySheetName, 0, 6, "End Time", (short)9);
-        setCellData(ExcelReportGenerator.summarySheetName, 1, 6, test_suite_endTime, (short)9);
+        setCellData(ExcelReportGenerator.summarySheetName, 1, 6, convertDate(test_suite_endTime), (short)9);
         setCellData(ExcelReportGenerator.summarySheetName, 0, 7, "Duration", (short)9);
         setCellData(ExcelReportGenerator.summarySheetName, 1, 7, String.valueOf(test_suite_duration) + " ms", (short)9);
         ExcelReportGenerator.colCount = getColumnCount(ExcelReportGenerator.summarySheetName);
@@ -108,7 +111,7 @@ public class ExcelReportGenerator
         my_pie_chart_data.setValue((Comparable)"Passed", (double)Integer.parseInt(passed));
         my_pie_chart_data.setValue((Comparable)"Failed", (double)Integer.parseInt(failed));
         my_pie_chart_data.setValue((Comparable)"Skipped", (double)Integer.parseInt(skipped));
-        final JFreeChart myPieChart = ChartFactory.createPieChart("Execution Status in PIE Chart", (PieDataset)my_pie_chart_data, true, true, false);
+        final JFreeChart myPieChart = ChartFactory.createPieChart("Execution Status", (PieDataset)my_pie_chart_data, true, true, false);
         final PiePlot plot = (PiePlot)myPieChart.getPlot();
         plot.setSectionPaint("Passed", Color.GREEN);
         plot.setSectionPaint("Failed", Color.RED);
@@ -187,8 +190,8 @@ public class ExcelReportGenerator
                         }
                     }
                     if (test_method_isConfig == "") {
-                        setCellData(test_name, 3, r, test_method_startTime, (short)9);
-                        setCellData(test_name, 4, r, test_method_endTime, (short)9);
+                        setCellData(test_name, 3, r, convertDate(test_method_startTime), (short)9);
+                        setCellData(test_name, 4, r, convertDate(test_method_endTime), (short)9);
                         setCellData(test_name, 5, r, String.valueOf(test_method_duration) + " ms", (short)9);
                     }
                 }
@@ -240,9 +243,9 @@ public class ExcelReportGenerator
         setCellHeaderData(ExcelReportGenerator.summarySheetName, 0, 4, "Total", (short)49);
         setCellHeaderData(ExcelReportGenerator.summarySheetName, 1, 4, total, (short)49);
         setCellData(ExcelReportGenerator.summarySheetName, 0, 5, "Start Time", (short)9);
-        setCellData(ExcelReportGenerator.summarySheetName, 1, 5, test_suite_startTime, (short)9);
+        setCellData(ExcelReportGenerator.summarySheetName, 1, 5, convertDate(test_suite_startTime), (short)9);
         setCellData(ExcelReportGenerator.summarySheetName, 0, 6, "End Time", (short)9);
-        setCellData(ExcelReportGenerator.summarySheetName, 1, 6, test_suite_endTime, (short)9);
+        setCellData(ExcelReportGenerator.summarySheetName, 1, 6, convertDate(test_suite_endTime), (short)9);
         setCellData(ExcelReportGenerator.summarySheetName, 0, 7, "Duration", (short)9);
         setCellData(ExcelReportGenerator.summarySheetName, 1, 7, String.valueOf(test_suite_duration) + " ms", (short)9);
         ExcelReportGenerator.colCount = getColumnCount(ExcelReportGenerator.summarySheetName);
@@ -253,7 +256,7 @@ public class ExcelReportGenerator
         my_pie_chart_data.setValue((Comparable)"Passed", (double)Integer.parseInt(passed));
         my_pie_chart_data.setValue((Comparable)"Failed", (double)Integer.parseInt(failed));
         my_pie_chart_data.setValue((Comparable)"Skipped", (double)Integer.parseInt(skipped));
-        final JFreeChart myPieChart = ChartFactory.createPieChart("Execution Status in PIE Chart", (PieDataset)my_pie_chart_data, true, true, false);
+        final JFreeChart myPieChart = ChartFactory.createPieChart("Execution Status", (PieDataset)my_pie_chart_data, true, true, false);
         final PiePlot plot = (PiePlot)myPieChart.getPlot();
         plot.setSectionPaint("Passed", Color.GREEN);
         plot.setSectionPaint("Failed", Color.RED);
@@ -332,8 +335,8 @@ public class ExcelReportGenerator
                         }
                     }
                     if (test_method_isConfig == "") {
-                        setCellData(test_name, 3, r, test_method_startTime, (short)9);
-                        setCellData(test_name, 4, r, test_method_endTime, (short)9);
+                        setCellData(test_name, 3, r, convertDate(test_method_startTime), (short)9);
+                        setCellData(test_name, 4, r, convertDate(test_method_endTime), (short)9);
                         setCellData(test_name, 5, r, String.valueOf(test_method_duration) + " ms", (short)9);
                     }
                 }
@@ -432,5 +435,10 @@ public class ExcelReportGenerator
         ExcelReportGenerator.row = ExcelReportGenerator.sheet.getRow(0);
         final int colCount = ExcelReportGenerator.row.getLastCellNum();
         return colCount;
+    }
+    
+    public static String convertDate(String dateString) {
+    	LocalDateTime date = LocalDateTime.parse(dateString, DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss'Z'"));
+    	return DateTimeFormatter.ofPattern("MMM dd, yyyy HH:mm:ss a").format(date);
     }
 }
