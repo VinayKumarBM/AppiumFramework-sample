@@ -1,39 +1,43 @@
 package com.appium.utils;
 
-import org.apache.poi.ss.usermodel.CellStyle;
-import org.apache.poi.ss.usermodel.BorderStyle;
-import org.apache.poi.ss.usermodel.FillPatternType;
-import org.apache.poi.ss.usermodel.Font;
-import org.apache.poi.xssf.usermodel.XSSFPicture;
-import org.apache.poi.ss.usermodel.ClientAnchor;
-import org.apache.poi.xssf.usermodel.XSSFDrawing;
-import org.jfree.chart.JFreeChart;
-import org.w3c.dom.Node;
-import org.w3c.dom.NodeList;
-import org.w3c.dom.Document;
-import javax.xml.parsers.DocumentBuilder;
-import org.apache.poi.xssf.usermodel.XSSFClientAnchor;
+import java.awt.Color;
+import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.FileOutputStream;
 import java.io.OutputStream;
 import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.time.ZoneOffset;
 import java.time.format.DateTimeFormatter;
+import java.util.Locale;
 
-import org.jfree.chart.ChartUtils;
-import java.io.ByteArrayOutputStream;
-import java.awt.Color;
-import org.jfree.chart.plot.PiePlot;
-import org.jfree.data.general.PieDataset;
-import org.jfree.chart.ChartFactory;
-import org.jfree.data.general.DefaultPieDataset;
-import org.w3c.dom.Element;
+import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
-import java.io.File;
-import org.apache.poi.xssf.usermodel.XSSFCellStyle;
-import org.apache.poi.xssf.usermodel.XSSFFont;
+
+import org.apache.poi.ss.usermodel.BorderStyle;
+import org.apache.poi.ss.usermodel.CellStyle;
+import org.apache.poi.ss.usermodel.ClientAnchor;
+import org.apache.poi.ss.usermodel.FillPatternType;
+import org.apache.poi.ss.usermodel.Font;
 import org.apache.poi.xssf.usermodel.XSSFCell;
+import org.apache.poi.xssf.usermodel.XSSFCellStyle;
+import org.apache.poi.xssf.usermodel.XSSFClientAnchor;
+import org.apache.poi.xssf.usermodel.XSSFDrawing;
+import org.apache.poi.xssf.usermodel.XSSFFont;
+import org.apache.poi.xssf.usermodel.XSSFPicture;
 import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
-import java.io.FileOutputStream;
+import org.jfree.chart.ChartFactory;
+import org.jfree.chart.ChartUtils;
+import org.jfree.chart.JFreeChart;
+import org.jfree.chart.plot.PiePlot;
+import org.jfree.data.general.DefaultPieDataset;
+import org.jfree.data.general.PieDataset;
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+import org.w3c.dom.Node;
+import org.w3c.dom.NodeList;
 
 public class ExcelReportGenerator
 {
@@ -437,8 +441,13 @@ public class ExcelReportGenerator
         return colCount;
     }
     
-    public static String convertDate(String dateString) {
-    	LocalDateTime date = LocalDateTime.parse(dateString, DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss'Z'"));
-    	return DateTimeFormatter.ofPattern("MMM dd, yyyy HH:mm:ss a").format(date);
+    public static String convertDate(String dateInString) {
+    	try {
+    	LocalDateTime date = LocalDateTime.parse(dateInString, DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss'Z'"));
+    	return DateTimeFormatter.ofPattern("MMM dd, yyyy hh:mm:ss a").format(date.plusHours(5).plusMinutes(30));
+    	} catch (Exception e) {
+    		System.out.println("Was not able to Parse the date: "+dateInString);
+    		return dateInString;
+		}
     }
 }
