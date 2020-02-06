@@ -35,3 +35,6 @@ reports/
 
 # html files #
 *.html
+
+# html files #
+*.xlsx
