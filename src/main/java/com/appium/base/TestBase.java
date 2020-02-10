@@ -13,13 +13,16 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.testng.ITestResult;
 import org.testng.annotations.AfterMethod;
+import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.BeforeSuite;
 
 import com.appium.config.AppType;
 import com.appium.config.Config;
 import com.appium.config.OS;
 import com.appium.utils.AppOperations;
 import com.appium.utils.ScreenshotUtil;
+import com.appium.utils.WaitUtil;
 
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileElement;
@@ -70,7 +73,6 @@ public abstract class TestBase {
 		DesiredCapabilities capabilities = new DesiredCapabilities();
 		capabilities.setCapability(MobileCapabilityType.DEVICE_NAME, Config.getProperties("android.device"));
 		capabilities.setCapability(MobileCapabilityType.AUTOMATION_NAME,"uiautomator2");
-		capabilities.setCapability(MobileCapabilityType.TAKES_SCREENSHOT,true);
 		if(appType.contains(AppType.ANDROID_APP.getValue())) {
 			String andoroidApp = Config.getProperties("android.app");
 			if (appType.contains(API_DEMOS_APP.toLowerCase())) {
@@ -99,20 +101,43 @@ public abstract class TestBase {
 		return driver;
 	}
 
-	//@BeforeSuite
-	public void startAppiumServer() {
+	@BeforeSuite
+	public void startAppiumServer() throws IOException {
 		if(!isAppiumServerRunning(4723)) {
 			//service = new AppiumServiceBuilder().usingPort(4723).build();
 			service = AppiumDriverLocalService.buildDefaultService();
 			service.start();
+			LOG.info("Appium Server started.");
 		}
+		startEmulator();
 	}
 
-	//@AfterSuite
-	public void stopAppiumServer() {
+	@AfterSuite (alwaysRun = true)
+	public void stopAppiumServer() throws IOException {		
+		stopEmulator();
 		service.stop();
+		LOG.info("Appium server stopped.");
 	}
 
+	private void stopEmulator() throws IOException {
+		String emulatorPath = String.format(Config.getProperties("emulator.stop.script"),Config.getProperties("appium.run.os").toLowerCase());
+		LOG.info("Stopping Emulator...");
+		executeScript(emulatorPath);
+		LOG.info("Emulator stopped.");
+	}
+
+	private void executeScript(String emulatorPath) throws IOException {
+		Runtime.getRuntime().exec(new File(Config.getProperties(emulatorPath)).getAbsolutePath());
+		WaitUtil.pause(30);
+	}
+	
+	private void startEmulator() throws IOException {
+		String emulatorPath = String.format(Config.getProperties("emulator.start.script"),Config.getProperties("appium.run.os").toLowerCase());
+		LOG.info("Starting Emulator...");
+		executeScript(emulatorPath);
+		LOG.info("Emulator started.");
+	}
+	
 	private boolean isAppiumServerRunning(int port) {
 		try {
 			ServerSocket serverSocket = new ServerSocket(port);
@@ -140,7 +165,7 @@ public abstract class TestBase {
 		}
 	}
 
-	@AfterMethod
+	@AfterMethod (alwaysRun = true)
 	public void quit(final ITestResult result) throws IOException {
 		try {
 			if(result.getStatus()==ITestResult.FAILURE) {
